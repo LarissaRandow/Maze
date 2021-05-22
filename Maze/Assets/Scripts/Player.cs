@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -26,8 +27,6 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-
-
         float forwardInput = Input.GetAxisRaw("Vertical");
         float strafeInput = Input.GetAxisRaw("Horizontal");
 
@@ -53,7 +52,14 @@ public class Player : MonoBehaviour {
 
         controller.Move(finalVelocity * Time.deltaTime);
 
+    }
 
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Sphere")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
 }
