@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
     CharacterController controller;
+    public GameObject win;
 
     Vector3 forward;
     Vector3 strafe;
@@ -59,6 +60,9 @@ public class Player : MonoBehaviour {
         if (coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Sphere")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }else if (coll.gameObject.tag == "Win")
+        {
+            win.gameObject.SetActive(true);
         }
     }
 
